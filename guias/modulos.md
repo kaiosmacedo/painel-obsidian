@@ -23,14 +23,16 @@ Um texto vazio (`""`) desliga a parte.
 | Nome | O que é |
 |---|---|
 | `VIEW_QUADRO` | A pasta do `quadro/`. Vazio: a Home fica sem cartões |
-| `NOTA_QUADRO` | A nota Quadro geral (o link "com o que foi feito na semana") |
+| `NOTA_QUADRO` | A nota Quadro geral: vira o atalho "Abrir o Quadro geral ↗", na ponta da primeira faixa de cartões |
 | `ESTADOS_NA_HOME` | As colunas que aparecem na Home |
 | `PASTA_REGISTROS` | Registros de trabalho: viram os pontos coloridos do calendário e a lista do dia |
 | `PASTA_DIARIO` | O diário: sublinhado no calendário e "Diário do dia" |
 | `CMD_DIARIO_HOJE` | O comando que abre o diário de hoje: `periodic-notes:open-daily-note` ou `daily-notes` |
 | `NOTA_HABITOS` | A nota da semana de hábitos |
 | `PASTA_EM_ANDAMENTO` | A lista da esquerda, embaixo |
+| `TITULO_EM_ANDAMENTO` | O título dessa lista. Vazio usa o nome da pasta (útil quando a pasta não tem acento, como `Reunioes` → "Reuniões") |
 | `FORA_DE_RECENTES` | Pastas que não entram em "Mexidas por último" |
+| `RECENTES_NA_ESQUERDA` | `true` leva "Mexidas por último" para a coluna da esquerda. Bom quando a Home não tem quadro nem hábitos: a esquerda ganha conteúdo e tudo cabe numa tela |
 | `PASTAS_PRIVADAS` | O que o teste com `semPrivado` não lê |
 | `ACOES` | Os botões do topo: `[texto, id do comando ou link]`. O primeiro fica em destaque. Um link `obsidian://open?vault=<outro cofre>&file=<nota>` abre nota de outro cofre (por exemplo, o Quadro geral do cofre onde mora o Central) |
 
@@ -60,5 +62,6 @@ O clique num dia marca ou desmarca e grava em `dias` (`AAAA-MM-DD`). Os dias que
 - O mês e o dia escolhidos não se perdem quando a Home se redesenha.
 
 ### Notas
+- Cada nota aparece pelo `title` das propriedades, quando tem; senão, pelo nome do arquivo.
 - A pasta em andamento, pelas mexidas mais recentes.
 - "Mexidas por último": todo o cofre, menos `FORA_DE_RECENTES`, a pasta em andamento, a própria Home e a nota de hábitos.

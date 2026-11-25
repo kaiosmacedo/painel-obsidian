@@ -51,12 +51,14 @@ for (const p of quadros) {
   a.style.setProperty("--qg-cor", cor(p.file.name));
 }
 
-for (const s of SECOES.filter(s => !opcoes.estados || opcoes.estados.includes(s.nome))) {
+for (const [i, s] of SECOES.filter(s => !opcoes.estados || opcoes.estados.includes(s.nome)).entries()) {
   const todos = cartoes.filter(c => c.coluna === s.nome);
   const itens = s.dias ? todos.filter(c => c.dias !== null && c.dias < s.dias) : todos;
   const sec = raiz.createDiv({ cls: (itens.length ? "" : "qg-vazia ") + (s.dias ? "qg-feito" : "") });
   const titulo = sec.createDiv({ cls: "qg-titulo", text: s.dias ? `${s.nome} nos últimos ${s.dias} dias` : s.nome });
   titulo.createSpan({ cls: "qg-conta", text: String(itens.length) });
+  // input.link (a Home passa a nota do Quadro geral): atalho na ponta da primeira faixa
+  if (i === 0 && opcoes.link) titulo.createEl("a", { cls: "internal-link qg-abrir", text: "Abrir o Quadro geral ↗", href: opcoes.link, attr: { "data-href": opcoes.link } });
   if (itens.length) {
     const grade = sec.createDiv({ cls: "qg-grade" });
     for (const c of itens) {

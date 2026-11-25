@@ -12,7 +12,9 @@ const PASTA_DIARIO = "Diário";                        // notas diarias AAAA-MM-
 const CMD_DIARIO_HOJE = "periodic-notes:open-daily-note"; // core: "daily-notes"
 const NOTA_HABITOS = "Hábitos.md";
 const PASTA_EM_ANDAMENTO = "Em Andamento";
+const TITULO_EM_ANDAMENTO = "";       // o titulo da lista; vazio usa o nome da pasta
 const FORA_DE_RECENTES = ["Central", "Diário", "Templates"]; // pastas que nao entram em "Mexidas por ultimo"
+const RECENTES_NA_ESQUERDA = false; // "Mexidas por ultimo" na coluna da esquerda (bom quando ela tem pouco: sem quadro nem habitos)
 const PASTAS_PRIVADAS = ["Diário"];                   // o teste sem o pessoal nao le estas pastas
 const ACOES = [["Diário de hoje", CMD_DIARIO_HOJE], ["Nova nota", "file-explorer:new-file"], ["Buscar", "switcher:open"]]; // [texto, comando ou link obsidian://]
 // ---- fim do ajuste
@@ -60,9 +62,8 @@ const colunas = raiz.createDiv({ cls: "home-duas" });
 const esq = colunas.createDiv({ cls: "home-col" });
 const dir = colunas.createDiv({ cls: "home-col" });
 
-const q = { alvo: esq, estados: ESTADOS_NA_HOME };
+const q = { alvo: esq, estados: ESTADOS_NA_HOME, link: NOTA_QUADRO };
 if (VIEW_QUADRO) await dv.view(VIEW_QUADRO, q);
-if (NOTA_QUADRO) link(esq, NOTA_QUADRO, "home-mais", "Quadro geral, com o que foi feito na semana →");
 const cor = q.cor ?? (() => "var(--text-muted)");
 
 // ---- semana: os habitos da NOTA_HABITOS, clique no dia marca ou desmarca
@@ -191,14 +192,14 @@ const lista = (pai, titulo, paginas, comPasta) => {
   const caixa = pai.createDiv({ cls: "home-caixa home-lista" });
   for (const p of paginas) {
     const a = link(caixa, p.file.path, "home-nota");
-    a.createSpan({ cls: "home-nota-nome", text: p.file.name });
+    a.createSpan({ cls: "home-nota-nome", text: String(p.title ?? p.file.name) }); // o title da nota, se houver
     if (comPasta && p.file.folder) a.createSpan({ cls: "home-nota-pasta", text: p.file.folder.split("/")[0] });
     a.createSpan({ cls: "home-nota-quando", text: ha(p.file.mtime.toMillis()) });
   }
   if (!paginas.length) caixa.createDiv({ cls: "cal-vazio", text: "Nada aqui." });
 };
-if (PASTA_EM_ANDAMENTO) lista(esq, PASTA_EM_ANDAMENTO, dv.pages(`"${PASTA_EM_ANDAMENTO}"`).sort(p => p.file.mtime, "desc").limit(6).array());
+if (PASTA_EM_ANDAMENTO) lista(esq, TITULO_EM_ANDAMENTO || PASTA_EM_ANDAMENTO, dv.pages(`"${PASTA_EM_ANDAMENTO}"`).sort(p => p.file.mtime, "desc").limit(6).array());
 const fora = p => dentro(p, [...FORA_DE_RECENTES, PASTA_EM_ANDAMENTO]) || [dv.current().file.path, NOTA_HABITOS].includes(p) || privada(p);
-lista(dir, "Mexidas por último", dv.pages()
+lista(RECENTES_NA_ESQUERDA ? esq : dir, "Mexidas por último", dv.pages()
   .where(p => !fora(p.file.path))
   .sort(p => p.file.mtime, "desc").limit(6).array(), true);
