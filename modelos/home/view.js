@@ -40,7 +40,7 @@ if (PASTA_REGISTROS) for (const p of dv.pages(`"${PASTA_REGISTROS}"`)) {
   const m = p.file.name.match(/^(\d{4}-\d\d-\d\d) (\d\d)(\d\d)/);
   if (m) dia(m[1]).registros.push({ hora: `${m[2]}:${m[3]}`, area: p.area, projeto: p.projeto ?? p.file.name, caminho: p.file.path });
 }
-for (const p of dv.pages().where(p => p.type === "reuniao" && !privada(p.file.path))) {
+for (const p of dv.pages().where(p => p.type === "reuniao" && !privada(p.file.path) && !p.file.path.startsWith("Templates/"))) { // o modelo de reuniao nao conta
   const k = p.file.name.match(/^\d{4}-\d\d-\d\d/)?.[0] ?? p.data?.toFormat?.("yyyy-MM-dd");
   if (k) dia(k).reunioes.push({ titulo: p.title ?? p.file.name, aberta: p.situacao === "aberta", caminho: p.file.path });
 }

@@ -1,9 +1,10 @@
 # As partes do painel
 
-São dois arquivos de código, cada um com `view.js` e `view.css`, carregados pelo Dataview com `await dv.view("<pasta>")`:
+São três partes de código, cada uma com `view.js` e `view.css`, carregadas pelo Dataview com `await dv.view("<pasta>")`:
 
 - `quadro/`: o quadro. Usado pela nota Quadro geral (todas as colunas) e pela Home (só as colunas de `ESTADOS_NA_HOME`).
 - `home/`: a Home inteira. Chama o `quadro/` para a parte dos cartões.
+- `dia/`: o topo da nota do diário. Chama o `quadro/` só para ler os cartões, sem desenhar. Ver "O diário" abaixo.
 
 As duas notas usam `cssclasses: painel`, que deixa a nota usar a largura da janela, até 1500px. A Home usa também `sem-titulo`, que esconde o título e as propriedades.
 
@@ -65,3 +66,24 @@ O clique num dia marca ou desmarca e grava em `dias` (`AAAA-MM-DD`). Os dias que
 - Cada nota aparece pelo `title` das propriedades, quando tem; senão, pelo nome do arquivo.
 - A pasta em andamento, pelas mexidas mais recentes.
 - "Mexidas por último": todo o cofre, menos `FORA_DE_RECENTES`, a pasta em andamento, a própria Home e a nota de hábitos.
+
+## O diário: o resumo do dia no topo da nota
+
+O `dia/` é o começo da nota do diário. O modelo está em `modelos/notas/Diario - modelo.md`; ele substitui o modelo do diário do cofre, e o antigo fica guardado ao lado. O dia é o nome da nota (`AAAA-MM-DD`). A nota mostra:
+
+- **O resumo:** quantos cartões esperam a pessoa, quantos estão parados, os recados para esta máquina e as reuniões abertas.
+- **O que espera por você:** cada cartão com o "Pendente" do último registro, que é o que ficou da conversa anterior, e o 💬 da conversa.
+- **Em andamento.**
+- **Hoje:** os hábitos do dia, marcados com um clique na mesma nota de hábitos da Home, os recados e as reuniões abertas.
+- **O que andou:** os registros de ontem e de hoje, um por projeto, inclusive os da outra máquina.
+
+A navegação no alto vai para ontem, para a Home e para amanhã. Embaixo ficam os campos de escrita da pessoa (gratidão, journaling, revisão) e o "Como estou" do Meta Bind, se ela usa.
+
+| Nome no bloco de ajuste de `dia/view.js` | O que é |
+|---|---|
+| `VIEW_QUADRO`, `NOTA_QUADRO` | Como na Home |
+| `PASTA_REGISTROS`, `PASTA_RECADOS`, `QUADROS_JSON` | O Central do kit: registros, recados por área e as máquinas donas (os recados mostrados são só os das áreas desta máquina) |
+| `NOTA_HABITOS` | A mesma nota de hábitos da Home |
+| `PASTA_DIARIO` | Onde ficam as notas do diário (para a navegação) |
+
+O diário costuma ser pasta privada. O `dia/` não lê nada do diário além do nome da nota aberta. Para testar, crie a nota `AAAA-MM-DD` numa pasta de teste fora do diário e apague depois.
