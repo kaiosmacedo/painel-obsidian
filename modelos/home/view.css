@@ -1,0 +1,86 @@
+/* Home: mesmo visual do Quadro geral (Central/Painel/quadro/view.css). */
+.home { container-type:inline-size; }
+/* a Home abre direto no dia: sem o titulo da nota e sem as propriedades */
+.sem-titulo .inline-title, .sem-titulo .metadata-container { display:none !important; }
+.home-caixa { background:var(--background-secondary); border-radius:10px; padding:10px 12px; }
+.home-h { font-weight:600; margin:24px 0 8px; }
+
+.home-topo { display:flex; justify-content:space-between; align-items:flex-end; gap:12px; flex-wrap:wrap; margin-bottom:14px; }
+.home-data { font-size:1.6em; font-weight:700; line-height:1.2; }
+.home-avisos { display:flex; flex-wrap:wrap; gap:6px; margin-top:6px; }
+.home a.home-aviso { font-size:.8em; padding:1px 10px; border-radius:999px; background:var(--background-modifier-border); color:var(--color-orange); text-decoration:none; }
+.home-acoes { display:flex; gap:6px; }
+
+/* duas colunas: esquerda flexivel e direita de 320px; viram uma so em tela estreita */
+.home-duas { display:grid; grid-template-columns:minmax(0, 1fr) 320px; gap:24px; align-items:start; }
+.home-col { min-width:0; }
+@container (max-width: 860px) { .home-duas { grid-template-columns:minmax(0, 1fr); } }
+.home a.home-mais { display:inline-block; margin-top:12px; font-size:.85em; color:var(--text-muted); text-decoration:none; }
+.home a.home-mais:hover { color:var(--text-accent); }
+
+/* botoes do calendario e da semana, sem o estilo padrao de botao */
+.home .cal button, .home .hab button { background:none; box-shadow:none; border:none; height:auto; padding:0; color:inherit; font:inherit; cursor:pointer; }
+.home button.home-nav { padding:2px 8px; border-radius:6px; color:var(--text-muted); }
+.home button.home-nav:hover:not(:disabled) { background:var(--background-modifier-hover); color:var(--text-normal); }
+.home button.home-nav:disabled { opacity:.3; cursor:default; }
+.home button.home-nav-hoje { font-size:.8em; border:1px solid var(--background-modifier-border); }
+
+/* semana: habitos de Hábitos.md */
+.hab { margin-top:20px; }
+.hab-cab { display:flex; align-items:center; gap:6px; margin-bottom:10px; }
+.hab-titulo { font-weight:600; }
+.hab-periodo { flex:1; font-size:.85em; color:var(--text-muted); }
+.hab-grade { display:grid; grid-template-columns:minmax(130px, auto) repeat(7, minmax(34px, 1fr)) minmax(110px, auto); gap:6px; align-items:center; }
+.home a.hab-editar { font-size:.75em; color:var(--text-faint); text-decoration:none; }
+.home a.hab-editar:hover { color:var(--text-accent); }
+.hab-dia { text-align:center; font-size:.75em; color:var(--text-muted); }
+.hab-dia.hoje { color:var(--text-normal); font-weight:700; }
+.hab-nome { white-space:nowrap; font-size:.9em; }
+.home .hab button.hab-cel { height:30px; border-radius:6px; display:grid; place-items:center; background:var(--background-modifier-border); font-weight:700; }
+.home .hab button.hab-cel:hover:not(:disabled) { box-shadow:inset 0 0 0 1px var(--interactive-accent); }
+.home .hab button.hab-cel.hoje { box-shadow:inset 0 0 0 1px var(--interactive-accent); }
+.home .hab button.hab-cel.feito { background:var(--interactive-accent); color:var(--text-on-accent); }
+.home .hab button.hab-cel:disabled { opacity:.3; cursor:default; }
+.hab-meta { display:flex; align-items:center; gap:8px; padding-left:6px; font-size:.8em; color:var(--text-muted); white-space:nowrap; }
+.hab-barra { flex:1; height:6px; border-radius:999px; background:var(--background-modifier-border); overflow:hidden; }
+.hab-barra > span { display:block; height:100%; background:var(--interactive-accent); }
+.hab-meta.ok { color:var(--color-green); font-weight:600; }
+.hab-meta.ok .hab-barra > span { background:var(--color-green); }
+
+/* calendario */
+.cal { background:var(--background-secondary); border-radius:10px; padding:12px; }
+.cal-cab { display:flex; align-items:center; gap:4px; margin-bottom:8px; }
+.cal-mes { flex:1; text-align:center; font-weight:600; }
+.cal-grade { display:grid; grid-template-columns:repeat(7, 1fr); gap:2px; }
+.cal-sem { text-align:center; font-size:.7em; color:var(--text-faint); padding-bottom:4px; }
+.home .cal button.cal-dia { display:flex; flex-direction:column; align-items:center; gap:3px; height:42px; padding-top:4px; border-radius:6px; font-size:.85em; }
+.home .cal button.cal-dia:hover { background:var(--background-modifier-hover); }
+.home .cal button.cal-dia.fora { opacity:.35; }
+.home .cal button.cal-dia.sel { box-shadow:inset 0 0 0 1px var(--interactive-accent); }
+.cal-num { width:22px; height:22px; display:grid; place-items:center; border-radius:999px; }
+.cal-dia.hoje .cal-num { background:var(--interactive-accent); color:var(--text-on-accent); font-weight:700; }
+.cal-dia.diario .cal-num { text-decoration:underline; text-decoration-color:var(--text-accent); text-underline-offset:3px; text-decoration-thickness:2px; }
+.cal-marcas { display:flex; gap:2px; height:6px; }
+.cal-ponto { width:6px; height:6px; border-radius:50%; flex:none; }
+.cal-reuniao { width:6px; height:6px; transform:rotate(45deg); background:var(--text-normal); }
+.cal-legenda { display:flex; flex-wrap:wrap; gap:4px 10px; margin-top:8px; font-size:.7em; color:var(--text-faint); }
+.cal-leg-diario { text-decoration:underline; text-decoration-color:var(--text-accent); text-underline-offset:3px; }
+.cal-painel { margin-top:10px; padding-top:10px; border-top:1px solid var(--background-modifier-border); display:flex; flex-direction:column; gap:2px; }
+.cal-painel-titulo { font-weight:600; font-size:.9em; margin-bottom:4px; }
+.cal a.cal-item { display:flex; align-items:center; gap:8px; padding:3px 6px; border-radius:6px; font-size:.85em; color:var(--text-normal); text-decoration:none; }
+.cal a.cal-item:hover { background:var(--background-modifier-hover); }
+.cal-reg .cal-ponto { background:var(--qg-cor); }
+.cal-reg-hora { color:var(--text-faint); font-variant-numeric:tabular-nums; }
+.cal-reg-projeto { flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.cal-reg-n { color:var(--text-faint); font-size:.85em; }
+.home .cal button.cal-botao { align-self:flex-start; margin-top:4px; font-size:.8em; padding:3px 10px; border-radius:6px; border:1px dashed var(--background-modifier-border); color:var(--text-muted); }
+.home .cal button.cal-botao:hover { color:var(--text-normal); }
+.cal-vazio { font-size:.85em; color:var(--text-faint); padding:3px 6px; }
+
+/* notas */
+.home-lista { display:flex; flex-direction:column; gap:1px; padding:6px; }
+.home a.home-nota { display:flex; align-items:baseline; gap:8px; padding:4px 6px; border-radius:6px; color:var(--text-normal); text-decoration:none; font-size:.9em; }
+.home a.home-nota:hover { background:var(--background-modifier-hover); }
+.home-nota-nome { flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.home-nota-pasta { font-size:.75em; color:var(--text-faint); }
+.home-nota-quando { font-size:.75em; color:var(--text-faint); white-space:nowrap; }

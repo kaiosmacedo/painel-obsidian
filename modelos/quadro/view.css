@@ -1,0 +1,22 @@
+/* Notas com cssclasses: painel (Quadro geral e Home) usam a largura da janela, até 1500px. */
+.painel { --file-line-width: 1500px; }
+
+.qg-areas { display:flex; flex-wrap:wrap; gap:6px; }
+.qg a.qg-area-link { font-size:.78em; padding:1px 10px; border-radius:999px; border:1px solid var(--qg-cor); color:var(--qg-cor); text-decoration:none; }
+.qg-titulo { display:flex; align-items:center; gap:8px; font-weight:600; margin:20px 0 8px; }
+.qg-conta { font-size:.75em; padding:0 8px; border-radius:999px; background:var(--background-modifier-border); color:var(--text-muted); }
+.qg-vazia .qg-titulo { font-weight:normal; color:var(--text-faint); margin:14px 0 0; }
+.qg-grade { display:grid; grid-template-columns:repeat(auto-fill, minmax(240px, 1fr)); gap:10px; }
+.qg a.qg-card { display:flex; flex-direction:column; gap:2px; padding:8px 12px; border-radius:8px; background:var(--background-secondary); border-left:3px solid var(--qg-cor); color:var(--text-normal); text-decoration:none; }
+.qg a.qg-card:hover { box-shadow:0 0 0 1px var(--qg-cor); }
+.qg-feito a.qg-card { opacity:.65; }
+.qg-topo { display:flex; justify-content:space-between; gap:8px; font-size:.72em; }
+.qg-area { color:var(--qg-cor); font-weight:600; text-transform:uppercase; letter-spacing:.04em; }
+.qg-topo-lado { display:flex; align-items:center; gap:6px; }
+.qg-conversa { cursor:pointer; opacity:.55; font-size:1.15em; line-height:1; }
+.qg-conversa:hover, .qg-conversa:focus-visible { opacity:1; }
+.qg-idade { color:var(--text-faint); white-space:nowrap; }
+.qg-idade.qg-parado { color:var(--color-orange); font-weight:600; }
+.qg-projeto { font-weight:600; line-height:1.3; }
+.qg-resumo { font-size:.85em; line-height:1.35; color:var(--text-muted); display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+.qg-mais { font-size:.8em; color:var(--text-muted); margin-top:6px; }
