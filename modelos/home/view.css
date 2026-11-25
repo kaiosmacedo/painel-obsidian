@@ -1,5 +1,7 @@
 /* Home: mesmo visual do Quadro geral (Central/Painel/quadro/view.css). */
 .home { container-type:inline-size; }
+/* largura da janela, ate 1500px, tambem na Home sem quadro (VIEW_QUADRO = "") */
+.painel { --file-line-width: 1500px; }
 /* a Home abre direto no dia: sem o titulo da nota e sem as propriedades */
 .sem-titulo .inline-title, .sem-titulo .metadata-container { display:none !important; }
 .home-caixa { background:var(--background-secondary); border-radius:10px; padding:10px 12px; }

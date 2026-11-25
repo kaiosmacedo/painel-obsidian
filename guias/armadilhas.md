@@ -3,7 +3,8 @@
 | O que aparece | Por quê | O que fazer |
 |---|---|---|
 | A nota abre mostrando o código, não o painel | No modo de edição, o cursor caiu dentro do bloco `dataviewjs` | Deixe uma linha em branco entre as propriedades e o bloco (os modelos já têm) |
-| O painel fica estreito, com metade das colunas | "Largura de linha legível" do Obsidian | `cssclasses: painel` na nota; o `view.css` do quadro muda `--file-line-width` |
+| O painel fica estreito, com metade das colunas | "Largura de linha legível" do Obsidian | `cssclasses: painel` na nota; o `view.css` do quadro e o da Home mudam `--file-line-width` (antes da 0.7.1, só o do quadro: a Home sem quadro ficava estreita) |
+| O botão com link `obsidian://` para outro cofre abre a Home de lá, não a nota pedida | O outro cofre estava fechado, e o Homepage dele troca tudo pela Home ao abrir | Com o outro cofre já aberto, o botão abre a nota certa. Na primeira vez do dia, clique de novo |
 | Mudou o `view.js` e nada mudou na tela | O Dataview só roda de novo quando uma nota muda | Feche a aba e abra a nota de novo |
 | Os arquivos `.js` e `.css` não aparecem na barra lateral | O Obsidian só lista os tipos que conhece | Normal: estão lá e o `dv.view` acha |
 | `Failed to execute view` | O caminho do `dv.view` não acha `<pasta>/view.js` | Confira o caminho, sem `/view.js` no fim |
