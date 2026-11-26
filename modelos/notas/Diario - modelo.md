@@ -3,19 +3,15 @@ title: "{{date:YYYY-MM-DD}}"
 tags:
   - Pessoal
   - Diário
-Feeling: 5
+Feeling:
 cssclasses:
   - diario-painel
 ---
 
 ```dataviewjs
-// O resumo do dia: o que espera por você (com o pendente do último registro), o que andou, recados, reuniões e hábitos.
+// O resumo do dia: como estou (0 a 10, grava em Feeling), hábitos, agenda, o que espera por você e o que andou.
 // O desenho mora em Central/Painel/dia. A instalação guarda o modelo antigo ao lado, com "(antes)" no nome.
 await dv.view("Central/Painel/dia")
-```
-
-```meta-bind
-INPUT[progressBar(title(Como estou), minValue(0), maxValue(10)):Feeling]
 ```
 
 ## Gratidão

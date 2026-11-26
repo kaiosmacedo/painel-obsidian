@@ -72,12 +72,15 @@ O clique num dia marca ou desmarca e grava em `dias` (`AAAA-MM-DD`). Os dias que
 O `dia/` é o começo da nota do diário. O modelo está em `modelos/notas/Diario - modelo.md`; ele substitui o modelo do diário do cofre, e o antigo fica guardado ao lado. O dia é o nome da nota (`AAAA-MM-DD`). A nota mostra:
 
 - **O resumo:** quantos cartões esperam a pessoa, quantos estão parados, os recados para esta máquina e as reuniões abertas.
+- **A faixa Hoje**, em três cartões:
+  - **Como estou:** a escala de 0 a 10, um clique, com a cor do vermelho ao verde e uma palavra ("Bem", "Meio pra baixo"). Grava em `Feeling` na própria nota; o segundo clique no mesmo número apaga. Substitui a barra do Meta Bind, que o CSS esconde nas notas antigas.
+  - **Hábitos:** os do dia, marcados com um clique na mesma nota de hábitos da Home, com quantas vezes na semana.
+  - **Agenda e recados:** as reuniões abertas e os recados para esta máquina.
 - **O que espera por você:** cada cartão com o "Pendente" do último registro, que é o que ficou da conversa anterior, e o 💬 da conversa.
 - **Em andamento.**
-- **Hoje:** os hábitos do dia, marcados com um clique na mesma nota de hábitos da Home, os recados e as reuniões abertas.
-- **O que andou:** os registros de ontem e de hoje, um por projeto, inclusive os da outra máquina.
+- **O que andou**, em drill-down: hoje e ontem, cada dia dividido por área. A área fechada mostra a contagem e o projeto mais recente; aberta, um item por projeto com a hora, a máquina (se for a outra), quantas vezes andou e o 💬. Hoje abre sozinho; o resto abre com um clique, e o que a pessoa abriu continua aberto quando a nota se redesenha.
 
-A navegação no alto vai para ontem, para a Home e para amanhã. Embaixo ficam os campos de escrita da pessoa (gratidão, journaling, revisão) e o "Como estou" do Meta Bind, se ela usa.
+A navegação no alto vai para ontem, para a Home e para amanhã. Embaixo ficam os campos de escrita da pessoa (gratidão, journaling, revisão).
 
 | Nome no bloco de ajuste de `dia/view.js` | O que é |
 |---|---|
@@ -85,5 +88,6 @@ A navegação no alto vai para ontem, para a Home e para amanhã. Embaixo ficam 
 | `PASTA_REGISTROS`, `PASTA_RECADOS`, `QUADROS_JSON` | O Central do kit: registros, recados por área e as máquinas donas (os recados mostrados são só os das áreas desta máquina) |
 | `NOTA_HABITOS` | A mesma nota de hábitos da Home |
 | `PASTA_DIARIO` | Onde ficam as notas do diário (para a navegação) |
+| `CAMPO_HUMOR` | A propriedade do "Como estou" na nota do dia (`Feeling`; troque se o cofre já usa outra) |
 
-O diário costuma ser pasta privada. O `dia/` não lê nada do diário além do nome da nota aberta. Para testar, crie a nota `AAAA-MM-DD` numa pasta de teste fora do diário e apague depois.
+O diário costuma ser pasta privada. O `dia/` não lê nada do diário além do nome e do `Feeling` da nota aberta, e só grava o `Feeling` dela. Para testar, crie a nota `AAAA-MM-DD` numa pasta de teste fora do diário e apague depois.
